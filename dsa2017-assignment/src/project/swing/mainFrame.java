@@ -592,6 +592,21 @@ public class mainFrame extends JFrame {
 
 		tableProduct = new JTable();
 		scrollPane_1.setViewportView(tableProduct);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (module_Product.deleleAfterCode(txtPSearch.getText())) {
+					JOptionPane.showMessageDialog(null, "Delete success!");
+					showDataProduct();
+				} else {
+					JOptionPane.showMessageDialog(null, "Code you input do not exist!");
+					showDataProduct();
+				}
+			}
+		});
+		btnNewButton.setBounds(343, 109, 89, 23);
+		pnProduct.add(btnNewButton);
 
 		JPanel pnOrder = new JPanel();
 		pnMain.add(pnOrder, "cardOrder");
@@ -636,7 +651,7 @@ public class mainFrame extends JFrame {
 					c.getPrice() });
 		}
 		tableProduct.getTableHeader().setReorderingAllowed(false);
-		tableProduct.setEnabled(false);
+		//tableProduct.setEnabled(false);
 		tableProduct.setModel(model);
 	}
 
@@ -652,7 +667,7 @@ public class mainFrame extends JFrame {
 			model.addRow(new Object[] { stt += 1, o.getPcode(), o.getCcode(), o.getQuantity() });
 		}
 		tableOrder.getTableHeader().setReorderingAllowed(false);
-		tableOrder.setEnabled(false);
+//		tableOrder.setEnabled(false);
 		tableOrder.setModel(model);
 	}
 }

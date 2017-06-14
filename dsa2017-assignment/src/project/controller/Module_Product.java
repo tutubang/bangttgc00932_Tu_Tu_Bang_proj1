@@ -85,4 +85,20 @@ public class Module_Product {
 		}
 		return myList;
 	}
+
+	public boolean deleleAfterCode(String code) {
+		boolean check = false;
+		try {
+			for (Product product : products) {
+				if (product.pcode.equals(code)) {
+					products.removeAfter(product);
+					check = true;
+				}
+			}
+			writeData(products);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
 }

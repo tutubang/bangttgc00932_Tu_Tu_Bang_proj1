@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 public class MyList<T> implements Iterable<T> {
 	MyNode<T> head;
 	MyNode<T> tail;
@@ -69,13 +68,29 @@ public class MyList<T> implements Iterable<T> {
 	}
 
 	public void remove(T t) {
-		for (MyNode<T> temp = head; temp != null; temp = temp.next) {
+		for (MyNode<T> temp = head; temp.next != null; temp = temp.next) {
 			if (temp.t.equals(t)) {
 				head = head.next;
 				size--;
+			} else if (temp.next.next == null) {
+				temp.next = null;
+				tail = temp;
+				size--;
+				break;
 			} else if (temp.next.t.equals(t)) {
 				temp.next = temp.next.next;
 				size--;
+			}
+		}
+	}
+
+	public void removeAfter(T t) {
+		for (MyNode<T> temp = head; temp.next != null; temp = temp.next) {
+			if (temp.t.equals(t)) {
+				temp.next = temp.next.next;
+				size--;
+			} else if (temp.next.next == null) {
+				break;
 			}
 		}
 	}
